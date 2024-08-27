@@ -1,4 +1,7 @@
 import 'package:amazon_clone/constants/global_variables.dart';
+import 'package:amazon_clone/features/profile/widgets/below_app_bar.dart';
+import 'package:amazon_clone/features/profile/widgets/orders.dart';
+import 'package:amazon_clone/features/profile/widgets/top_buttons.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -8,27 +11,50 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50), 
-        child: AppBar(
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: GlobalVariables.appBarGradient
+          preferredSize: const Size.fromHeight(50),
+          child: AppBar(
+            flexibleSpace: Container(
+              decoration:
+                  BoxDecoration(gradient: GlobalVariables.appBarGradient),
+            ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Image.asset(
+                    'assets/images/amazon_in.png',
+                    width: 115,
+                    height: 40,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: const Row(
+                    children:[
+                      Padding(
+                        padding: EdgeInsets.only(right: 15),
+                        child: Icon(Icons.notifications),
+                      ),
+                      Icon(Icons.search),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
-          title: Row(
-            children: [
-              Container(
-                alignment: Alignment.topLeft,
-                child: Image.asset(
-                  'assets/images/amazon_in.png',
-                  width: 115,
-                  height: 40,
-                ),
-              )
-            ],
+          
           ),
-        )
-        ),
+          body: Column(
+            children: [
+              BelowAppBar(),
+              const SizedBox(height: 10,),
+              TopButtons(),
+              const SizedBox(height: 10,), 
+              Orders()
+            ],
+
+          ),
     );
   }
 }
